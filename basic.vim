@@ -102,11 +102,12 @@ if has("termguicolors")
 endif
 
 if exists('+colorcolumn')
-    let &colorcolumn=join(range(79,79),",")
+    "set textwidth=110
+    set colorcolumn=+1
 endif
 
 if has("gui_running")
-    set guifont=Terminus\ 10
+    set guifont=Source\ Code\ Pro\ Regular\ 8
     set guioptions=aegit
     set columns=120
     set lines=40
