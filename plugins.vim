@@ -56,8 +56,8 @@ NeoBundle 'vim-scripts/FSwitch'
 NeoBundle 'vim-scripts/ProtoDef'
 NeoBundle 'vim-scripts/Tagbar'
 
-" NeoBundle 'Valloric/YouCompleteMe'
-" NeoBundle 'rdnetto/YCM-Generator'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'rdnetto/YCM-Generator'
 
 call neobundle#end()
 
@@ -135,9 +135,9 @@ let g:protodefprotogetter=$HOME."/.vim/bundle/ProtoDef/pullproto.pl"
 
 " --------
 " YouCompleteMe
-let g:acp_enableAtStartup=0
 let g:ycm_global_ycm_extra_conf=$HOME."/.vim/ycm_extra_conf.py"
-let g:ycm_extra_conf_globlist=['~/.vim/*']
+"let g:ycm_extra_conf_globlist=['~/.vim/*']
+let g:ycm_confirm_extra_conf=0
 let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_filetype_blacklist={
         \ 'tagbar' : 1,
@@ -155,11 +155,3 @@ noremap <silent> <leader>yi     :YcmCompleter GoToInclude<CR>
 noremap <silent> <leader>yt     :YcmCompleter GetType<CR>
 noremap <silent> <leader>jd     :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-" augroup ycm
-"     au!
-"     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" augroup END
