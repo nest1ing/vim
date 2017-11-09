@@ -56,8 +56,12 @@ NeoBundle 'vim-scripts/FSwitch'
 NeoBundle 'vim-scripts/ProtoDef'
 NeoBundle 'vim-scripts/Tagbar'
 
+NeoBundle 'ervandew/supertab'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'rdnetto/YCM-Generator'
+
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
 call neobundle#end()
 
@@ -134,9 +138,12 @@ augroup END
 let g:protodefprotogetter=$HOME."/.vim/bundle/ProtoDef/pullproto.pl"
 
 " --------
+" SuperTab
+"let g:SuperTabDefaultCompletionType = '<c-n>'
+
+" --------
 " YouCompleteMe
 let g:ycm_global_ycm_extra_conf=$HOME."/.vim/ycm_extra_conf.py"
-"let g:ycm_extra_conf_globlist=['~/.vim/*']
 let g:ycm_confirm_extra_conf=0
 let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_filetype_blacklist={
@@ -147,6 +154,8 @@ let g:ycm_filetype_blacklist={
         \ 'vimwiki' : 1,
         \ 'mail' : 1
         \}
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 
 noremap <silent> <leader>yc     :YcmCompleter GetDoc<CR>
 noremap <silent> <leader>yf     :YcmCompleter FixIt<CR>
@@ -155,3 +164,8 @@ noremap <silent> <leader>yi     :YcmCompleter GoToInclude<CR>
 noremap <silent> <leader>yt     :YcmCompleter GetType<CR>
 noremap <silent> <leader>jd     :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+" --------
+" UltiSnip
+" let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
