@@ -20,6 +20,7 @@ set wcm=<Tab>
 imap <F1> <Esc> :exe "Man ".expand("<cword>")<cr>
 nmap <F1>       :exe "Man ".expand("<cword>")<cr>
 
+runtime ftplugin/man.vim
 " Define group of commands.
 " Commands defined in .vimrc don't bind twice if .vimrc will reload
 augroup helppages
