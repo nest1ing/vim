@@ -62,6 +62,7 @@ NeoBundle 'rdnetto/YCM-Generator'
 
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
+NeoBundle 'vim-scripts/DoxygenToolkit.vim'
 
 call neobundle#end()
 
@@ -169,3 +170,7 @@ noremap <silent> <leader>jd     :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" --------
+" DoxygenToolkit
+
