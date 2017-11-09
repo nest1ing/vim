@@ -81,6 +81,9 @@ nnoremap <silent><leader>m  :Unite file_mru<CR>
 " Unite-grep
 nnoremap <silent><leader>/  :Unite grep:. -no-start-insert -no-quit -keep-focus -wrap<CR>
 
+" C/C++ helpers
+nnoremap <silent><leader>hg :call CreateCHeaderGuard()<CR>
+nnoremap <silent><leader>cc :call CenterCComment()<CR>
 
 " -----------------------------------------------------------------------
 " Helper functions
@@ -95,4 +98,32 @@ endfunction
 function! UpdateCtags()
     !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
     echo "Create ctags OK"
+endfunction
+
+function! CreateCHeaderGuard()
+    let headername = "_".substitute(toupper(expand("%:t")), "\\.\\|-", "_", "g")."_"
+    execute "normal Go#endif".repeat(" ", 38)."//#ifdef ".headername
+    execute "normal ggO#ifndef ".headername
+    execute "normal o#define ".headername
+    execute "normal o"
+endfunction
+
+function! s:centered_string(str, ch)
+    let maxwidth = (&tw > 0) ? &tw : 78
+    let ch_count = (maxwidth - strlen(a:str) - 4) / 2
+    if ch_count >= 0
+        let padding = maxwidth - (4 + strlen(a:str) + 2*ch_count)
+        return repeat(a:ch, ch_count)." ".a:str." ".repeat(a:ch, ch_count + padding)
+    else
+        return a:str
+    endif
+endfunction
+
+function! CenterCComment()
+    let line = getline(".")
+    if match(line, '^\s*\/\/-') >= 0
+        call setline(".", "\/\/".s:centered_string(substitute(line, '^\s*\/\/-\(\s\+\)\?\|\s\+$', "", "g"), "-"))
+    elseif match(line, '^\s*\/\/') >= 0
+        call setline(".", "\/\/".s:centered_string(substitute(line, '^\s*\/\/\(\s\+\)\?\|\s\+$', "", "g"), " "))
+    endif
 endfunction
