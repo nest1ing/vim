@@ -104,6 +104,7 @@ endif
 if exists('+colorcolumn')
     "set textwidth=110
     set colorcolumn=+1
+    set cursorline
 endif
 
 if has("gui_running")
