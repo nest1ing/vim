@@ -1,86 +1,43 @@
-" Turn off filetype plugins before bundles init
-filetype off
-
-" Auto installing NeoBundle
-let isNpmInstalled = executable("npm")
-let iCanHazNeoBundle = 1
-let neobundle_readme=expand($HOME.'/.vim/bundle/neobundle.vim/README.md')
-if !filereadable(neobundle_readme)
-    if !isNpmInstalled
-        echo "==============================================="
-        echo "Your need to install npm to enable all features"
-        echo "==============================================="
-    endif
-    echo "Installing NeoBundel..."
-    silent !mkdir -p $HOME/.vim/bundle
-    silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
-    let iCanHazHeoBundle=0
+" Install vim-plug if not exists
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!~/.vim/install-plug-vim.sh vim'
 endif
 
-" Call NeoBundle
-if has('vim_starting')
-    set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
-endif
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
 
-call neobundle#begin(expand($HOME.'/.vim/bundle/'))
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
+Plug 'jszakmeister/vim-togglecursor'
 
-" Let NeoBundle manage NeoBundle
-NeoBundle 'Shougo/neobundle.vim'
-
-" Install vimproc. Is used by unite and neocomplcache for async searches and calls
-NeoBundle 'Shougo/vimproc.vim', {
-      \   'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'linux' : 'make',
-      \     'unix' : 'gmake',
-      \   }
-      \ }
-
-" Plugin for fuzzy file search, most recent files list and much more
-NeoBundle 'Shougo/unite.vim'
-
-" Most recent files source for unite
-NeoBundle 'Shougo/neomru.vim'
-
-" Plugin for changing cursor when entering in insert mode
-" looks like it works fine with iTerm Konsole adn xerm
-" Applies only on next vim launch after NeoBundleInstall
-NeoBundle 'jszakmeister/vim-togglecursor'
-
-NeoBundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vim-scripts/DoxygenToolkit.vim'
 
 " IDE specific plugins
-NeoBundle 'vim-scripts/FSwitch'
-NeoBundle 'vim-scripts/ProtoDef'
-NeoBundle 'vim-scripts/Tagbar'
+Plug 'vim-scripts/FSwitch'
+Plug 'vim-scripts/ProtoDef', { 'do': 'chmod 0755 ~/.vim/plugged/ProtoDef/pullproto.pl' }
+Plug 'vim-scripts/Tagbar'
 
-NeoBundle 'ervandew/supertab'
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'rdnetto/YCM-Generator'
+Plug 'ervandew/supertab'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'vim-scripts/DoxygenToolkit.vim'
 
-call neobundle#end()
 
-" Installing bundles for the first time
-if iCanHazNeoBundle == 0
-	echo 'Installing Bundles, please ignore key map error messages'
-	:NeoBundleInstall
-	:so $MYVIMRC
-endif
+" Initialize plugin system
+call plug#end()
 
 " Enable Indent in plugins
 filetype plugin indent on
 " Enable syntax highlighting
 syntax on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 " -------
 " Unite
@@ -96,14 +53,12 @@ let g:unite_source_rec_max_cache_files = 99999
 " --------
 " NERD-Tree
 
-" let NERDChristmasTree = 0
 let NERDTreeWinSize = 30
 let NERDTreeChDirMode=2             "setting root dir in NT also sets VIM's cd
 let NERDTreeShowBookmarks=1
 let NERDTreeWinPos = 'right'
 let NERDTreeIgnore=['\.o','\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeQuitOnOpen=1            "the Nerdtree window will be close after a file is opend.
-"let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 
 " open NERDTree automatically when vim starts up if no files where specified
@@ -158,12 +113,12 @@ let g:ycm_filetype_blacklist={
 let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 
-noremap <silent> <leader>yc     :YcmCompleter GetDoc<CR>
-noremap <silent> <leader>yf     :YcmCompleter FixIt<CR>
-noremap <silent> <leader>yg     :YcmCompleter GoTo<CR>
-noremap <silent> <leader>yi     :YcmCompleter GoToInclude<CR>
-noremap <silent> <leader>yt     :YcmCompleter GetType<CR>
-noremap <silent> <leader>jd     :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" noremap <silent> <leader>yc     :YcmCompleter GetDoc<CR>
+" noremap <silent> <leader>yf     :YcmCompleter FixIt<CR>
+" noremap <silent> <leader>yg     :YcmCompleter GoTo<CR>
+" noremap <silent> <leader>yi     :YcmCompleter GoToInclude<CR>
+" noremap <silent> <leader>yt     :YcmCompleter GetType<CR>
+" noremap <silent> <leader>jd     :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " --------
 " UltiSnip
@@ -174,3 +129,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " --------
 " DoxygenToolkit
 
+" --------
+" Deoplete.nvim
+let g:deoplete#enable_at_startup=1
+let g:deoplete#sources#clang#libclang_path='/usr/lib64/libclang.so'
+let g:deoplete#sources#clang#clang_header='/usr/lib64/clang'
