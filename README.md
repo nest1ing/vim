@@ -8,7 +8,7 @@ To fix ProtoDef execute:
   chmod 0755 ~/.vim/bundle/ProtoDef/pullproto.pl
 ```
 
-To build ycm_core exceute:
+To build ycm_core execute:
 ```
   ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
 ```
