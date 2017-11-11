@@ -86,6 +86,15 @@ nnoremap <silent><leader>/  :Unite grep:. -no-start-insert -no-quit -keep-focus 
 nnoremap <silent><leader>hg :call CreateCHeaderGuard()<CR>
 nnoremap <silent><leader>cc :call CenterCComment()<CR>
 
+if exists( "g:loaded_youcompleteme" )
+    noremap <silent> <leader>yc     :YcmCompleter GetDoc<CR>
+    noremap <silent> <leader>yf     :YcmCompleter FixIt<CR>
+    noremap <silent> <leader>yg     :YcmCompleter GoTo<CR>
+    noremap <silent> <leader>yi     :YcmCompleter GoToInclude<CR>
+    noremap <silent> <leader>yt     :YcmCompleter GetType<CR>
+    noremap <silent> <leader>jd     :YcmCompleter GoToDefinitionElseDeclaration<CR>
+endif
+
 " -----------------------------------------------------------------------
 " Helper functions
 

@@ -25,15 +25,28 @@ Plug 'vim-scripts/ProtoDef', { 'do': '!chmod 0755 ~/.vim/plugged/ProtoDef/pullpr
 Plug 'vim-scripts/Tagbar'
 
 Plug 'ervandew/supertab'
-if (has('nvim'))
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'zchee/deoplete-clang'
-Plug 'Shougo/neoinclude.vim'
+" if (has('nvim'))
+"     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"     Plug 'Shougo/deoplete.nvim'
+"     Plug 'roxma/nvim-yarp'
+"     Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" Plug 'zchee/deoplete-clang'
+" Plug 'Shougo/neoinclude.vim'
+
+function! BuildYCM(info)
+    " info is a dictionary with 3 fields
+    " - name:   name of the plugin
+    " - status: 'installed', 'updated', or 'unchanged'
+    " - force:  set on PlugInstall! or PlugUpdate!
+    if a:info.status == 'installed' || a:info.force
+        !./install.py --clang-completer
+    endif
+endfunction
+
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable' }
 
 " Initialize plugin system
 call plug#end()
@@ -117,18 +130,11 @@ let g:ycm_filetype_blacklist={
 let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 
-" noremap <silent> <leader>yc     :YcmCompleter GetDoc<CR>
-" noremap <silent> <leader>yf     :YcmCompleter FixIt<CR>
-" noremap <silent> <leader>yg     :YcmCompleter GoTo<CR>
-" noremap <silent> <leader>yi     :YcmCompleter GoToInclude<CR>
-" noremap <silent> <leader>yt     :YcmCompleter GetType<CR>
-" noremap <silent> <leader>jd     :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 " --------
 " UltiSnip
 " let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " --------
 " DoxygenToolkit
