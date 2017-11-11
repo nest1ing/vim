@@ -19,6 +19,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+
 " IDE specific plugins
 Plug 'vim-scripts/FSwitch'
 Plug 'vim-scripts/ProtoDef', { 'do': '!chmod 0755 ~/.vim/plugged/ProtoDef/pullproto.pl' }
