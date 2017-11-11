@@ -28,8 +28,8 @@ Plug 'ervandew/supertab'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-
-
+Plug 'zchee/deoplete-clang'
+Plug 'Shougo/neoinclude.vim'
 
 " Initialize plugin system
 call plug#end()
