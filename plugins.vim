@@ -21,13 +21,17 @@ Plug 'vim-scripts/DoxygenToolkit.vim'
 
 " IDE specific plugins
 Plug 'vim-scripts/FSwitch'
-Plug 'vim-scripts/ProtoDef', { 'do': 'chmod 0755 ~/.vim/plugged/ProtoDef/pullproto.pl' }
+Plug 'vim-scripts/ProtoDef', { 'do': '!chmod 0755 ~/.vim/plugged/ProtoDef/pullproto.pl' }
 Plug 'vim-scripts/Tagbar'
 
 Plug 'ervandew/supertab'
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+if (has('nvim'))
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'zchee/deoplete-clang'
 Plug 'Shougo/neoinclude.vim'
 

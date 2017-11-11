@@ -1,14 +1,5 @@
 # vim
-backup of vim settings
+backup of vim/neovim settings
 
-For installation just clone it to ~/.vim
+For installation just clone it to ~/.vim or to ~/.config/nvim 
 
-To fix ProtoDef execute:
-```
-  chmod 0755 ~/.vim/bundle/ProtoDef/pullproto.pl
-```
-
-To build ycm_core execute:
-```
-  ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
-```
