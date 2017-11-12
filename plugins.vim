@@ -21,6 +21,7 @@ Plug 'vim-scripts/DoxygenToolkit.vim'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'kergoth/vim-bitbake'
 
 " IDE specific plugins
 Plug 'vim-scripts/FSwitch'
