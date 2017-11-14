@@ -117,6 +117,7 @@ let g:protodefprotogetter=$HOME."/.vim/bundle/ProtoDef/pullproto.pl"
 " --------
 " SuperTab
 "let g:SuperTabDefaultCompletionType = '<c-n>'
+let g:SuperTabClosePreviewOnPopupClose = 1
 
 " --------
 " YouCompleteMe
@@ -133,6 +134,8 @@ let g:ycm_filetype_blacklist={
         \}
 let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " --------
 " UltiSnip
