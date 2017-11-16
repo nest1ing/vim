@@ -111,7 +111,7 @@ function! UpdateCtags()
 endfunction
 
 function! CreateCHeaderGuard()
-    let headername = "_".substitute(toupper(expand("%:t")), "\\.\\|-", "_", "g")."_"
+    let headername = substitute(toupper(expand("%:t")), "\\.\\|-", "_", "g")
     execute "normal Go#endif".repeat(" ", 38)."//#ifdef ".headername
     execute "normal ggO#ifndef ".headername
     execute "normal o#define ".headername
