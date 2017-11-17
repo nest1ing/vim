@@ -17,11 +17,13 @@ Plug 'jszakmeister/vim-togglecursor'
 Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
 Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'kergoth/vim-bitbake'
+Plug 'sedan07/vim-mib'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'kergoth/vim-bitbake'
 
 " IDE specific plugins
 Plug 'vim-scripts/FSwitch'
