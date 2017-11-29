@@ -78,9 +78,9 @@ imap <S-F11>           <Esc>:NERDTreeToggle<CR>
 noremap <S-F12>             :call UpdateCtags()<CR>
 
 " Hotkey for open window with most recent files
-nnoremap <silent><leader>m  :Unite file_mru<CR>
+nnoremap <silent><leader>m  :Denite file_mru<CR>
 " Unite-grep
-nnoremap <silent><leader>/  :Unite grep:. -no-start-insert -no-quit -keep-focus -wrap<CR>
+nnoremap <silent><leader>/  :Denite grep:.<CR>
 
 " C/C++ helpers
 nnoremap <silent><leader>hg :call CreateCHeaderGuard()<CR>

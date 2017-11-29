@@ -10,7 +10,7 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
-Plug 'Shougo/unite.vim'
+Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neomru.vim'
 Plug 'jszakmeister/vim-togglecursor'
 
@@ -31,15 +31,12 @@ Plug 'vim-scripts/ProtoDef', { 'do': '!chmod 0755 ~/.vim/plugged/ProtoDef/pullpr
 Plug 'vim-scripts/Tagbar'
 
 Plug 'ervandew/supertab'
-" if (has('nvim'))
-"     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"     Plug 'Shougo/deoplete.nvim'
-"     Plug 'roxma/nvim-yarp'
-"     Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" Plug 'zchee/deoplete-clang'
-" Plug 'Shougo/neoinclude.vim'
+
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'zchee/deoplete-clang'
+Plug 'Shougo/neoinclude.vim'
 
 function! BuildYCM(info)
     " info is a dictionary with 3 fields
@@ -51,8 +48,8 @@ function! BuildYCM(info)
     endif
 endfunction
 
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable' }
+"Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+"Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable' }
 
 " Initialize plugin system
 call plug#end()
