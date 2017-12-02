@@ -15,6 +15,7 @@ Plug 'Shougo/neomru.vim'
 Plug 'jszakmeister/vim-togglecursor'
 
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
