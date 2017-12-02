@@ -21,6 +21,7 @@ Plug 'honza/vim-snippets'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'kergoth/vim-bitbake'
 Plug 'sedan07/vim-mib'
+Plug 'PotatoesMaster/i3-vim-syntax'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
