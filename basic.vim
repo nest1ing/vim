@@ -108,7 +108,8 @@ if exists('+colorcolumn')
 endif
 
 if has("gui_running")
-    set guifont=Source\ Code\ Pro\ Regular\ 8
+    "set guifont=Source\ Code\ Pro\ Regular\ 8
+    set guifont=Terminus\ Regular\ 9
     set guioptions=aegit
     set columns=120
     set lines=40
@@ -128,3 +129,4 @@ if &term == "xterm" || &term == "xterm-256color"
 endif
 
 colorscheme mydefault
+set background=dark
