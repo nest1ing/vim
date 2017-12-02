@@ -151,3 +151,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:deoplete#enable_at_startup=1
 let g:deoplete#sources#clang#libclang_path='/usr/lib64/libclang.so'
 let g:deoplete#sources#clang#clang_header='/usr/lib64/clang'
+
+" Auto close preview
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
