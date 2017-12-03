@@ -26,6 +26,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
 
 " IDE specific plugins
 Plug 'vim-scripts/FSwitch'
