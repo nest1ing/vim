@@ -9,6 +9,10 @@ endif
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neomru.vim'
@@ -156,4 +160,7 @@ let g:deoplete#sources#clang#clang_header='/usr/lib64/clang'
 
 " Auto close preview
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" --------
+" vim-airline
 

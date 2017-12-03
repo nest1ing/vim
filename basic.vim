@@ -97,9 +97,13 @@ augroup vimrc
 " Group end
 augroup END
 
-if has("termguicolors")
-    set termguicolors
-endif
+"colorscheme soldarkrgb
+colorscheme solarized
+set background=dark
+
+" if has("termguicolors")
+"     set termguicolors
+" endif
 
 if exists('+colorcolumn')
     "set textwidth=110
@@ -128,5 +132,3 @@ if &term == "xterm" || &term == "xterm-256color"
     set <S-F4>=[1;2S
 endif
 
-colorscheme mydefault
-set background=dark
