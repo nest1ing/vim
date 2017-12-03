@@ -44,6 +44,7 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'zchee/deoplete-clang'
 Plug 'Shougo/neoinclude.vim'
+Plug 'zchee/deoplete-jedi'
 
 function! BuildYCM(info)
     " info is a dictionary with 3 fields
