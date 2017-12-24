@@ -12,10 +12,6 @@ imap <ins> <esc>a
 nmap <Home> ^
 imap <Home> <Esc>I
 
-" Wild menu
-set wildmenu
-set wcm=<Tab>
-
 " <F1> showing help for work under cursor
 imap <F1> <Esc> :exe "Man ".expand("<cword>")<cr>
 nmap <F1>       :exe "Man ".expand("<cword>")<cr>
@@ -43,25 +39,29 @@ augroup END
 map  <S-F1>      :set nu!<cr>
 imap <S-F1> <Esc>:set nu!<cr>a
 
+" Wild menu
+set wildmenu
+set wcm=<C-Z>
+
 " <F8> - check spelling
 menu VVspell.enable_ru      :setlocal spell spelllang=ru<CR>
 menu VVspell.enable_en      :setlocal spell spelllang=en<CR>
 menu VVspell.enable_enru    :setlocal spell spelllang=en,ru<CR>
 menu VVspell.disable        :setlocal spell spelllang=<CR>
-map <F8>                    :emenu VVspell.<Tab>
+map <F8>                    :emenu VVspell.<C-Z>
 
 " <S-F8> change file encoding
 menu Encoding.utf-8         :e ++enc=utf-8<CR>
 menu Encoding.cp1251        :e ++enc=cp1251<CR>
 menu Encoding.cp88          :e ++enc=ibm866<CR>
 menu Encoding.koi8-r        :e ++enc=koi8-r<CR>
-map <S-F8>                  :emenu Encoding.<Tab>
+map <S-F8>                  :emenu Encoding.<C-Z>
 
 " <C-F8> change file format
 menu EOL.unix               :set fileformat=unix<CR>
 menu EOL.dos                :set fileformat=dos<CR>
 menu EOL.mac                :set fileformat=mac<CR>
-map <C-F8>                  :emenu EOL.<Tab>
+map <C-F8>                  :emenu EOL.<C-Z>
 
 " <F11> toggle Tagbar
 map  <F11>                  :TagbarToggle<CR>
@@ -85,15 +85,6 @@ nnoremap <silent><leader>/  :Denite grep:.<CR>
 " C/C++ helpers
 nnoremap <silent><leader>hg :call CreateCHeaderGuard()<CR>
 nnoremap <silent><leader>cc :call CenterCComment()<CR>
-
-if exists( "g:loaded_youcompleteme" )
-    noremap <silent> <leader>yc     :YcmCompleter GetDoc<CR>
-    noremap <silent> <leader>yf     :YcmCompleter FixIt<CR>
-    noremap <silent> <leader>yg     :YcmCompleter GoTo<CR>
-    noremap <silent> <leader>yi     :YcmCompleter GoToInclude<CR>
-    noremap <silent> <leader>yt     :YcmCompleter GetType<CR>
-    noremap <silent> <leader>jd     :YcmCompleter GoToDefinitionElseDeclaration<CR>
-endif
 
 " -----------------------------------------------------------------------
 " Helper functions
