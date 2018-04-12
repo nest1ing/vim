@@ -9,25 +9,23 @@ endif
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
+" misc plugins
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neomru.vim'
 Plug 'jszakmeister/vim-togglecursor'
 
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
+" additional filetype plugins
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'kergoth/vim-bitbake'
 Plug 'sedan07/vim-mib'
 Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'mfukar/robotframework-vim'
 
+" integrate with git
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
@@ -37,27 +35,17 @@ Plug 'vim-scripts/FSwitch'
 Plug 'vim-scripts/ProtoDef', { 'do': '!chmod 0755 ~/.vim/plugged/ProtoDef/pullproto.pl' }
 Plug 'vim-scripts/Tagbar'
 
+" Autocompletion
 Plug 'ervandew/supertab'
-
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-clang'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'zchee/deoplete-clang'
 Plug 'Shougo/neoinclude.vim'
 Plug 'zchee/deoplete-jedi'
-
-function! BuildYCM(info)
-    " info is a dictionary with 3 fields
-    " - name:   name of the plugin
-    " - status: 'installed', 'updated', or 'unchanged'
-    " - force:  set on PlugInstall! or PlugUpdate!
-    if a:info.status == 'installed' || a:info.force
-        !./install.py --clang-completer
-    endif
-endfunction
-
-"Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-"Plug 'rdnetto/YCM-Generator',  { 'branch': 'stable' }
+Plug 'sebastianmarkow/deoplete-rust'
 
 " Initialize plugin system
 call plug#end()
@@ -81,13 +69,12 @@ let g:unite_source_rec_max_cache_files = 99999
 " --------
 " NERD-Tree
 
-let NERDTreeWinSize = 30
 let NERDTreeChDirMode=2             "setting root dir in NT also sets VIM's cd
 let NERDTreeShowBookmarks=1
 let NERDTreeWinPos = 'right'
 let NERDTreeIgnore=['\.o','\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeQuitOnOpen=1            "the Nerdtree window will be close after a file is opend.
-let NERDTreeKeepTreeInNewTab=1
+let NERDTreeMinimalUI=1
 
 " open NERDTree automatically when vim starts up if no files where specified
 "autocmd StdinReadPre * let s:std_in=1
@@ -163,17 +150,7 @@ let g:deoplete#sources#clang#clang_header='/usr/lib64/clang'
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " --------
-" vim-airline
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
+" deoplete-rust
+let g:deoplete#sources#rust#racer_binary=$HOME.'/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/usr/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#show_duplicates=1

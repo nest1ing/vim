@@ -50,7 +50,6 @@ set laststatus=2
 " Format the status line
 set statusline=%<%f\ %m%r\ \ Line:\ %l/%L[%P]\ Col:\ %c\ Buf:\ #%n
 set noruler
-set nomodeline
 
 set t_Co=256
 
@@ -94,16 +93,15 @@ augroup vimrc
     " Automatically removing all trailing whitespace
     autocmd FileType c,cpp,h,pl,pm,py,vim autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+    " Commit msg should wrap at 72 char.
+    autocmd FileType gitcommit setlocal spell textwidth=72
+
 " Group end
 augroup END
 
-"colorscheme soldarkrgb
-colorscheme solarized
-set background=dark
-
-" if has("termguicolors")
-"     set termguicolors
-" endif
+if has("termguicolors")
+    set termguicolors
+endif
 
 if exists('+colorcolumn')
     "set textwidth=110
@@ -132,3 +130,4 @@ if &term == "xterm" || &term == "xterm-256color"
     set <S-F4>=[1;2S
 endif
 
+colorscheme mydefault
