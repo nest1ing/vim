@@ -86,6 +86,9 @@ nnoremap <silent><leader>/  :Denite grep:.<CR>
 nnoremap <silent><leader>hg :call CreateCHeaderGuard()<CR>
 nnoremap <silent><leader>cc :call CenterCComment()<CR>
 
+" Force saving files that require root permission.
+cmap w!! w !sudo tee > /dev/null %
+
 " -----------------------------------------------------------------------
 " Helper functions
 
