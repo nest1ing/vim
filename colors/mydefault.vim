@@ -51,7 +51,7 @@ if has("gui_running") || &t_Co > 255
     hi! Special          guifg=#9383D8               ctermfg=97
 
     hi! Underlined       guifg=#6AEBFF                                       cterm=underline
-    hi! Error            guifg=#D7E7EC guibg=#BA0000 ctermfg=252 ctermbg=124
-    hi! Todo             guifg=#0000F0 guibg=#FFEB8B ctermfg=20  ctermbg=221
+    hi! Error            guibg=#D7E7EC guifg=#BA0000 ctermbg=252 ctermfg=124 gui=reverse cterm=reverse
+    hi! Todo             guibg=#0000F0 guifg=#FFEB8B ctermbg=20  ctermfg=221 gui=reverse cterm=reverse
 endif
 
