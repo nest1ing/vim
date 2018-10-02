@@ -104,7 +104,7 @@ if has("termguicolors")
 endif
 
 if exists('+colorcolumn')
-    "set textwidth=110
+    set textwidth=80
     set colorcolumn=+1
     set cursorline
 endif
