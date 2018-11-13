@@ -36,8 +36,13 @@ augroup helppages
 augroup END
 
 "<S-F1> - toggle line numbers
-map  <S-F1>      :set nu!<cr>
-imap <S-F1> <Esc>:set nu!<cr>a
+if has('nvim')
+    map  <F13>      :set nu!<cr>
+    imap <F13> <Esc>:set nu!<cr>a
+else
+    map  <S-F1>      :set nu!<cr>
+    imap <S-F1> <Esc>:set nu!<cr>a
+endif
 
 " Wild menu
 set wildmenu
@@ -55,27 +60,36 @@ menu Encoding.utf-8         :e ++enc=utf-8<CR>
 menu Encoding.cp1251        :e ++enc=cp1251<CR>
 menu Encoding.cp88          :e ++enc=ibm866<CR>
 menu Encoding.koi8-r        :e ++enc=koi8-r<CR>
-map <S-F8>                  :emenu Encoding.<C-Z>
+if has('nvim')
+    map <F20>               :emenu Encoding.<C-Z>
+else
+    map <S-F8>              :emenu Encoding.<C-Z>
+endif
+
 
 " <C-F8> change file format
 menu EOL.unix               :set fileformat=unix<CR>
 menu EOL.dos                :set fileformat=dos<CR>
 menu EOL.mac                :set fileformat=mac<CR>
-map <C-F8>                  :emenu EOL.<C-Z>
+if has('nvim')
+    map <F32>               :emenu EOL.<C-Z>
+else
+    map <C-F8>              :emenu EOL.<C-Z>
+endif
 
 " <F11> toggle Tagbar
 map  <F11>                  :TagbarToggle<CR>
 vmap <F11>             <Esc>:TagbarToggle<CR>
 imap <F11>             <Esc>:TagbarToggle<CR>
 
-" <S-F11> toggle NERDTree
-map  <S-F11>                :NERDTreeToggle<CR>
-vmap <S-F11>           <Esc>:NERDTreeToggle<CR>
-imap <S-F11>           <Esc>:NERDTreeToggle<CR>
-
-
 " <S-F12> update ctags
-noremap <S-F12>             :call UpdateCtags()<CR>
+if has('nvim')
+    noremap <F24>           :call UpdateCtags()<CR>
+    noremap <F36>           :call UpdateCscopeDb()<CR>
+else
+    noremap <S-F12>         :call UpdateCtags()<CR>
+    noremap <C-F12>         :call UpdateCscopeDb()<CR>
+endif
 
 " Hotkey for open window with most recent files
 nnoremap <silent><leader>m  :Denite file_mru<CR>
@@ -102,6 +116,17 @@ endfunction
 function! UpdateCtags()
     !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
     echo "Create ctags OK"
+endfunction
+
+let tags = $VIMRUNTIME ."tags"
+
+function! UpdateCscopeDb()
+    let extensions = ["\\*.cpp", "\\*.h", "\\*.hpp", "\\*.inl", "\\*.inc", "\\*.c", "\\*.cxx"]
+    let update_file_list = "find . -name " . join(extensions, " -o -name ") . " > ./cscope.files"
+    echo system(update_file_list)
+    echo system("cscope -b")
+    cscope kill -1
+    cscope add .
 endfunction
 
 function! CreateCHeaderGuard()

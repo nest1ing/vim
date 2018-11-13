@@ -1,21 +1,33 @@
-" Install vim-plug if not exists
-if empty(glob("~/.vim/autoload/plug.vim"))
-    execute '!~/.vim/install-plug-vim.sh vim'
+" Specify a directory for plugins
+" - Avoid using standard Vim directory names like 'plugin'
+let s:plug_vim_path = '~/.vim/autoload/plug.vim'
+let s:plugged_path = '~/.vim/plugged'
+
+" For Neovim: ~/.local/share/nvim/plugged
+if has('nvim')
+    let s:plug_vim_path = '~/.local/share/nvim/site/autoload/plug.vim'
+    let s:plugged_path = '~/.local/share/nvim/plugged'
 endif
 
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
+" Install vim-plug if not exists
+if empty(glob(s:plug_vim_path))
+    execute 'silent !curl -fLo  ' . s:plug_vim_path . ' --create-dirs ' .
+        \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin(s:plugged_path)
 " Make sure you use single quotes
 
 " misc plugins
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/neomru.vim'
-Plug 'jszakmeister/vim-togglecursor'
-
-Plug 'scrooloose/nerdtree'
+if has('nvim')
+    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/neomru.vim'
+else
+    Plug 'Shougo/denite.nvim'
+    Plug 'Shougo/neomru.vim'
+    Plug 'jszakmeister/vim-togglecursor'
+endif
 
 " additional filetype plugins
 Plug 'vim-scripts/DoxygenToolkit.vim'
@@ -25,27 +37,27 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'mfukar/robotframework-vim'
 
 " integrate with git
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'jreybert/vimagit'
 
 " IDE specific plugins
-Plug 'vim-scripts/FSwitch'
-Plug 'vim-scripts/ProtoDef', { 'do': '!chmod 0755 ~/.vim/plugged/ProtoDef/pullproto.pl' }
-Plug 'vim-scripts/Tagbar'
+Plug 'derekwyatt/vim-fswitch',
+Plug 'derekwyatt/vim-protodef',
+Plug 'majutsushi/tagbar',
 
 " Autocompletion
 Plug 'ervandew/supertab'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'Shougo/deoplete.nvim'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 Plug 'zchee/deoplete-clang'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'Shougo/neoinclude.vim'
 Plug 'zchee/deoplete-jedi'
-Plug 'sebastianmarkow/deoplete-rust'
 
 " Initialize plugin system
 call plug#end()
@@ -54,34 +66,6 @@ call plug#end()
 filetype plugin indent on
 " Enable syntax highlighting
 syntax on
-
-" -------
-" Unite
-
-let g:unite_winheight = 10
-let g:unite_split_rule = 'botright'
-let g:unite_source_file_mru_limit = 100
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_history_yank_limit = 40
-let g:unite_source_grep_default_opts = '-iRHns'
-let g:unite_source_rec_max_cache_files = 99999
-
-" --------
-" NERD-Tree
-
-let NERDTreeChDirMode=2             "setting root dir in NT also sets VIM's cd
-let NERDTreeShowBookmarks=1
-let NERDTreeWinPos = 'right'
-let NERDTreeIgnore=['\.o','\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeQuitOnOpen=1            "the Nerdtree window will be close after a file is opend.
-let NERDTreeMinimalUI=1
-
-" open NERDTree automatically when vim starts up if no files where specified
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" close vim if the only window left open is a NERDTree
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " --------
 " Tagbar
@@ -97,7 +81,7 @@ let g:tagbar_compact = 1
 " FSwitch
 augroup fswitch
     au!
-    au BufEnter *.cpp,*.cxx,*.cc,*.c,*.inl  let b:fswitchdst  = 'h,hpp'
+    au BufEnter *.cpp,*.cxx,*.cc,*.c,*.inl  let b:fswitchdst  = 'hpp,h'
     au BufEnter *.cpp,*.cxx,*.cc,*.c,*.inl  let b:fswitchlocs = 'reg:|src|include|,reg:|src|inc|'
     au BufEnter *.h,*.hpp                   let b:fswitchdst  = 'cpp,c,inl,cxx,cc'
     au BufEnter *.h,*.hpp                   let b:fswitchlocs = 'reg:|include|src|,reg:|inc|src|'
@@ -105,40 +89,14 @@ augroup fswitch
 augroup END
 
 " --------
-" ProtoDef
-let g:protodefprotogetter=$HOME."/.vim/bundle/ProtoDef/pullproto.pl"
-
-" --------
 " SuperTab
-"let g:SuperTabDefaultCompletionType = '<c-n>'
 let g:SuperTabClosePreviewOnPopupClose = 1
 
 " --------
-" YouCompleteMe
-let g:ycm_global_ycm_extra_conf=$HOME."/.vim/ycm_extra_conf.py"
-let g:ycm_confirm_extra_conf=0
-let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_filetype_blacklist={
-        \ 'tagbar' : 1,
-        \ 'qf' : 1,
-        \ 'notes' : 1,
-        \ 'unite' : 1,
-        \ 'vimwiki' : 1,
-        \ 'mail' : 1
-        \}
-let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-
-" --------
-" UltiSnip
-" let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" --------
 " DoxygenToolkit
+let g:DoxygenToolkit_licenseTag = "\<enter>"
+let g:DoxygenToolkit_licenseTag .= "SPDX-License-Identifier: Apache-2.0\<enter>"
+let g:DoxygenToolkit_licenseTag .= "Copyright (C) ".strftime("%Y")." YADRO."
 
 " --------
 " Deoplete.nvim
@@ -149,8 +107,3 @@ let g:deoplete#sources#clang#clang_header='/usr/lib64/clang'
 " Auto close preview
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" --------
-" deoplete-rust
-let g:deoplete#sources#rust#racer_binary=$HOME.'/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/usr/lib/rustlib/src/rust/src'
-let g:deoplete#sources#rust#show_duplicates=1
