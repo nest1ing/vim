@@ -41,9 +41,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " IDE specific plugins
-Plug 'derekwyatt/vim-fswitch',
-Plug 'derekwyatt/vim-protodef',
-Plug 'majutsushi/tagbar',
+Plug 'derekwyatt/vim-fswitch'
+Plug 'derekwyatt/vim-protodef'
+Plug 'majutsushi/tagbar'
+Plug 'vim-syntastic/syntastic'
 
 " Autocompletion
 Plug 'ervandew/supertab'
@@ -107,3 +108,10 @@ let g:deoplete#sources#clang#clang_header='/usr/lib64/clang'
 " Auto close preview
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" --------
+" vim-syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = "\u25b6"
+let g:syntastic_warning_symbol = "\u25b6"
