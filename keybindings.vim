@@ -12,6 +12,9 @@ imap <ins> <esc>a
 nmap <Home> ^
 imap <Home> <Esc>I
 
+" Disable entering to Ex mode
+noremap Q <Nop>
+
 " <F1> showing help for work under cursor
 imap <F1> <Esc> :exe "Man ".expand("<cword>")<cr>
 nmap <F1>       :exe "Man ".expand("<cword>")<cr>
