@@ -60,6 +60,7 @@ endif
 Plug 'zchee/deoplete-clang'
 Plug 'Shougo/neoinclude.vim'
 Plug 'zchee/deoplete-jedi'
+Plug 'sebastianmarkow/deoplete-rust'
 
 " Initialize plugin system
 call plug#end()
@@ -128,3 +129,10 @@ augroup ClangFormatSettings
     autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
     autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 augroup END
+
+" --------
+" deoplete-rust
+let g:deoplete#sources#rust#racer_binary=$HOME.'/.cargo/bin/racer'
+"let g:deoplete#sources#rust#rust_source_path='/usr/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#rust_source_path=$HOME.'/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#show_duplicates=1
