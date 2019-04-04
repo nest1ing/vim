@@ -45,6 +45,7 @@ Plug 'derekwyatt/vim-fswitch'
 Plug 'derekwyatt/vim-protodef'
 Plug 'majutsushi/tagbar'
 Plug 'vim-syntastic/syntastic'
+Plug 'rhysd/vim-clang-format'
 
 " Autocompletion
 Plug 'ervandew/supertab'
@@ -113,5 +114,17 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_error_symbol = "\u25b6"
-let g:syntastic_warning_symbol = "\u25b6"
+let g:syntastic_error_symbol = "▶"
+let g:syntastic_warning_symbol = "▶"
+
+" ---------
+" vim-clang-format
+"let g:clang_format#code_style = "llvm"
+"let g:clang_format#auto_format = 1
+"let g:clang_format#auto_format_on_insert_leave = 1
+augroup ClangFormatSettings
+    autocmd!
+    " map to <Leader>cf in C++ code
+    autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+    autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+augroup END
