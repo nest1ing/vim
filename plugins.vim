@@ -57,9 +57,9 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'zchee/deoplete-clang'
+Plug 'deoplete-plugins/deoplete-clang'
 Plug 'Shougo/neoinclude.vim'
-Plug 'zchee/deoplete-jedi'
+Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'sebastianmarkow/deoplete-rust'
 
 " Initialize plugin system
@@ -106,6 +106,7 @@ let g:DoxygenToolkit_licenseTag .= "Copyright (C) ".strftime("%Y")." YADRO."
 let g:deoplete#enable_at_startup=1
 let g:deoplete#sources#clang#libclang_path='/usr/lib64/libclang.so'
 let g:deoplete#sources#clang#clang_header='/usr/lib64/clang'
+let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++17'}
 
 " Auto close preview
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
