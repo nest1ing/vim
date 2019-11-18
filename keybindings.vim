@@ -1,3 +1,9 @@
+" Disable arrow keys
+" noremap <Up> <Nop>
+" noremap <Down> <Nop>
+" noremap <Left> <Nop>
+" noremap <Right> <Nop>
+
 " Copy selected block to clipboard
 vmap <C-Insert>	"+Y
 
@@ -18,6 +24,10 @@ noremap Q <Nop>
 " <F1> showing help for work under cursor
 imap <F1> <Esc> :exe "Man ".expand("<cword>")<cr>
 nmap <F1>       :exe "Man ".expand("<cword>")<cr>
+
+" Move  quickfix data
+noremap [q :cprev<CR>
+noremap ]q :cnext<CR>
 
 runtime ftplugin/man.vim
 " Define group of commands.
