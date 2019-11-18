@@ -121,6 +121,11 @@ if has("xterm_clipboard")
     set mouse=a
 endif
 
+if has("nvim")
+    set mouse=a
+    set clipboard=unnamed
+endif
+
 if &term == "xterm" || &term == "xterm-256color"
     " Fix keycode for Shift + F1-F4 in xterm
     set <S-F1>=[1;2P
