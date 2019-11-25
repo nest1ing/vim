@@ -46,6 +46,7 @@ Plug 'derekwyatt/vim-protodef'
 Plug 'majutsushi/tagbar'
 Plug 'vim-syntastic/syntastic'
 Plug 'rhysd/vim-clang-format'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Autocompletion
 Plug 'ervandew/supertab'
@@ -141,3 +142,7 @@ let g:deoplete#sources#rust#racer_binary=$HOME.'/.cargo/bin/racer'
 "let g:deoplete#sources#rust#rust_source_path='/usr/lib/rustlib/src/rust/src'
 let g:deoplete#sources#rust#rust_source_path=$HOME.'/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:deoplete#sources#rust#show_duplicates=1
+
+" --------
+" vim-gutentags
+let g:gutentags_modules=['gtags_cscope']
