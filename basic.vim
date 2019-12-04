@@ -48,7 +48,7 @@ set noswapfile
 set laststatus=2
 
 " Format the status line
-set statusline=%<%f\ %m%r\ \ Line:\ %l/%L[%P]\ Col:\ %c\ Buf:\ #%n
+set statusline=%<%f\ %m%r%=Line:\ %l/%L[%P]\ Col:\ %c\ Buf:\ #%n
 set noruler
 
 set t_Co=256
