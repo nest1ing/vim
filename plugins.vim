@@ -146,3 +146,7 @@ let g:deoplete#sources#rust#show_duplicates=1
 " --------
 " vim-gutentags
 let g:gutentags_modules=['gtags_cscope']
+
+" --------
+" vim-gitgutter
+let g:gitgutter_override_sign_column_highlight = 0
