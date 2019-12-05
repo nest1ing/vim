@@ -60,5 +60,10 @@ if has("gui_running") || &t_Co > 255
     hi Underlined       guifg=#6AEBFF                                       cterm=underline
     hi Error            guibg=#D7E7EC guifg=#BA0000 ctermbg=252 ctermfg=124 gui=reverse cterm=reverse
     hi Todo             guibg=#0000F0 guifg=#FFEB8B ctermbg=20  ctermfg=221 gui=reverse cterm=reverse
+
+    hi DiffAdd                          guibg=#003100
+    hi DiffDelete       guifg=#3465A4   guibg=#080B0C
+    hi DiffChange                       guibg=#2C2842
+    hi DiffText                         guibg=#4B3B59
 endif
 
