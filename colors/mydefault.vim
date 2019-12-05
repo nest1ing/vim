@@ -23,10 +23,10 @@ let g:colors_name="mydefault"
 if has("gui_running") || &t_Co > 255
     "  == highlight groups ==
     hi Normal		    guifg=#B2BEC2   guibg=#141C1E
-    hi LineNr		    guifg=#596e76   guibg=#000000
-    hi NonText		    guifg=#3465A4   guibg=#000000
-    hi SignColumn                       guibg=#000000
-    hi FoldColumn	    guifg=#3465A4   guibg=#000000
+    hi LineNr		    guifg=#596e76   guibg=#080B0C
+    hi NonText		    guifg=#3465A4   guibg=#080B0C
+    hi SignColumn                       guibg=#080B0C
+    hi FoldColumn	    guifg=#3465A4   guibg=#080B0C
     hi Folded		    guifg=#D3D7CF   guibg=#204A87
     hi VertSplit	    guifg=#4E6169   guibg=#4E6169   gui=bold
     hi StatusLine	    guifg=#8CA6AF   guibg=#090C0D
@@ -37,7 +37,7 @@ if has("gui_running") || &t_Co > 255
     hi CursorLine                       guibg=#212A2E
     hi Visual                           guibg=#37474D
     hi VisualNOS                        guibg=#37474d   gui=none
-    hi ColorColumn                      guibg=#000000
+    hi! link ColorColumn CursorLine
 
     hi Pmenu		    guifg=#B2BEC2   guibg=#1D2529
     hi PmenuSel		    guifg=#B2BEC2   guibg=#283338
