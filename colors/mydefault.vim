@@ -39,10 +39,14 @@ if has("gui_running") || &t_Co > 255
     hi VisualNOS                     guibg=#37474d             ctermbg=236 cterm=none gui=none
     hi ColorColumn                   guibg=#000000             ctermbg=234
 
-    hi Pmenu		    guifg=#eeeeec guibg=#2e3436 ctermfg=81  ctermbg=16
-    hi PmenuSel		guifg=#1e2426 guibg=#ffffff             ctermbg=244
-    hi PmenuSbar	    guibg=#555753                           ctermbg=232
-    hi PmenuThumb	    guifg=#ffffff               ctermfg=81
+    hi Pmenu		    guifg=#B2BEC2   guibg=#1D2529
+    hi PmenuSel		    guifg=#B2BEC2   guibg=#283338
+    hi PmenuSbar	    guibg=#4E6169
+    hi PmenuThumb	    guifg=#8CA6AF
+
+    hi! link TabLine Pmenu
+    hi! link TabLineSel PmenuSel
+    hi! link TabLineFill Pmenu
 
     " == syntax groups ==
     hi Comment          guifg=#0083B6               ctermfg=24
