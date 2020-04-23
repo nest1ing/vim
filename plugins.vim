@@ -106,8 +106,6 @@ let g:DoxygenToolkit_authorName = 'nest1ing <shurik.f@gmail.com>'
 " --------
 " Deoplete.nvim
 let g:deoplete#enable_at_startup=1
-let g:deoplete#sources#clang#libclang_path='/usr/lib64/libclang.so'
-let g:deoplete#sources#clang#clang_header='/usr/lib64/clang'
 let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++17'}
 
 " Auto close preview
