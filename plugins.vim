@@ -101,6 +101,7 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 let g:DoxygenToolkit_licenseTag = "\<enter>"
 let g:DoxygenToolkit_licenseTag .= "SPDX-License-Identifier: Apache-2.0\<enter>"
 let g:DoxygenToolkit_licenseTag .= "Copyright (C) ".strftime("%Y")." YADRO."
+let g:DoxygenToolkit_authorName = 'nest1ing <shurik.f@gmail.com>'
 
 " --------
 " Deoplete.nvim
