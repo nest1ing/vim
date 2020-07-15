@@ -147,6 +147,8 @@ let g:deoplete#sources#rust#show_duplicates=1
 " --------
 " vim-gutentags
 let g:gutentags_modules=['gtags_cscope']
+" Make <C-]> using GTAGS
+set cscopetag
 
 " --------
 " vim-gitgutter
