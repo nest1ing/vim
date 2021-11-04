@@ -27,6 +27,8 @@ else
     Plug 'jszakmeister/vim-togglecursor'
 endif
 
+Plug 'mileszs/ack.vim'
+
 " additional filetype plugins
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'kergoth/vim-bitbake'
