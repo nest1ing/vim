@@ -27,6 +27,9 @@ set sidescroll=7
 set scrolljump=7
 set sidescrolloff=7
 
+" Keep cursor at the screen center
+set so=999
+
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
@@ -71,6 +74,9 @@ set wildmenu                                    " show enhanced completion
 set wildignore+=.hg,.git,.svn                   " version control
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*jpeg   " binary images
 set wildignore+=*.o,*.sw?,*.pyc
+set wildignore+=build/*                         " yocto build directory
+
+set spelllang=en_us,ru
 
 " Define group of commands.
 " Commands defined in .vimrc don't bind twice if .vimrc will reload

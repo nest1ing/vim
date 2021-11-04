@@ -22,10 +22,8 @@ call plug#begin(s:plugged_path)
 " misc plugins
 if has('nvim')
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'Shougo/neomru.vim'
 else
     Plug 'Shougo/denite.nvim'
-    Plug 'Shougo/neomru.vim'
     Plug 'jszakmeister/vim-togglecursor'
 endif
 

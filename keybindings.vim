@@ -1,8 +1,9 @@
 " Disable arrow keys
-" noremap <Up> <Nop>
-" noremap <Down> <Nop>
-" noremap <Left> <Nop>
-" noremap <Right> <Nop>
+" noremap <Up>    :echoe "Use k"<CR>
+" noremap <Down>  :echoe "Use j"<CR>
+" noremap <Left>  :echoe "Use h"<CR>
+" noremap <Right> :echoe "Use l"<CR>
+imap jj <ESC>
 
 " Copy selected block to clipboard
 vmap <C-Insert>	"+Y
@@ -95,24 +96,6 @@ map  <F11>                  :TagbarToggle<CR>
 vmap <F11>             <Esc>:TagbarToggle<CR>
 imap <F11>             <Esc>:TagbarToggle<CR>
 
-" <S-F12> update ctags
-if has('nvim')
-    noremap <F24>           :call UpdateCtags()<CR>
-    noremap <F36>           :call UpdateCscopeDb()<CR>
-else
-    noremap <S-F12>         :call UpdateCtags()<CR>
-    noremap <C-F12>         :call UpdateCscopeDb()<CR>
-endif
-
-" Hotkey for open window with most recent files
-nnoremap <silent><leader>m  :Denite file_mru<CR>
-" Unite-grep
-nnoremap <silent><leader>/  :Denite grep:.<CR>
-
-" C/C++ helpers
-nnoremap <silent><leader>hg :call CreateCHeaderGuard()<CR>
-nnoremap <silent><leader>cc :call CenterCComment()<CR>
-
 " Force saving files that require root permission.
 cmap w!! w !sudo tee > /dev/null %
 
@@ -126,46 +109,3 @@ function! QuitHelp()
     endif
 endfunction
 
-function! UpdateCtags()
-    !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
-    echo "Create ctags OK"
-endfunction
-
-let tags = $VIMRUNTIME ."tags"
-
-function! UpdateCscopeDb()
-    let extensions = ["\\*.cpp", "\\*.h", "\\*.hpp", "\\*.inl", "\\*.inc", "\\*.c", "\\*.cxx"]
-    let update_file_list = "find . -name " . join(extensions, " -o -name ") . " > ./cscope.files"
-    echo system(update_file_list)
-    echo system("cscope -b")
-    cscope kill -1
-    cscope add .
-endfunction
-
-function! CreateCHeaderGuard()
-    let headername = substitute(toupper(expand("%:t")), "\\.\\|-", "_", "g")
-    execute "normal Go#endif".repeat(" ", 38)."//#ifdef ".headername
-    execute "normal ggO#ifndef ".headername
-    execute "normal o#define ".headername
-    execute "normal o"
-endfunction
-
-function! s:centered_string(str, ch)
-    let maxwidth = (&tw > 0) ? &tw : 78
-    let ch_count = (maxwidth - strlen(a:str) - 4) / 2
-    if ch_count >= 0
-        let padding = maxwidth - (4 + strlen(a:str) + 2*ch_count)
-        return repeat(a:ch, ch_count)." ".a:str." ".repeat(a:ch, ch_count + padding)
-    else
-        return a:str
-    endif
-endfunction
-
-function! CenterCComment()
-    let line = getline(".")
-    if match(line, '^\s*\/\/-') >= 0
-        call setline(".", "\/\/".s:centered_string(substitute(line, '^\s*\/\/-\(\s\+\)\?\|\s\+$', "", "g"), "-"))
-    elseif match(line, '^\s*\/\/') >= 0
-        call setline(".", "\/\/".s:centered_string(substitute(line, '^\s*\/\/\(\s\+\)\?\|\s\+$', "", "g"), " "))
-    endif
-endfunction
