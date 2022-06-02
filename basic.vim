@@ -1,9 +1,4 @@
-set nocompatible            " disable vi compatibility
 set noautoindent            " disable autoindent
-set nocindent               " disable automatic C program indenting
-
-" More powerful backspacing
-set backspace=indent,eol,start
 
 " Configure tabwidth and insert spaces instead of tabs
 set expandtab
@@ -20,27 +15,17 @@ set hlsearch
 " Highlight matching braces
 set showmatch
 " How many tenths of a second to blink when matching brackets
-set mat=2
+set matchtime=2
 
 " Scroll
 set sidescroll=7
 set scrolljump=7
 set sidescrolloff=7
-
 " Keep cursor at the screen center
-set so=999
+set scrolloff=999
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
-
-" For regular expressions turn magic on
-set magic
-
-" No annoing sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
 
 " Turn backup off
 set nobackup
@@ -54,29 +39,24 @@ set laststatus=2
 set statusline=%<%f\ %m%r%=Line:\ %l/%L[%P]\ Col:\ %c\ Buf:\ #%n
 set noruler
 
-set t_Co=256
-
+" Show tabs, trailing spaces and so on
 set listchars+=precedes:<,extends:>
+set list
 
 
-set hidden
-set nofoldenable
-set autoread
-set ttyfast
-set exrc
-set secure
+set hidden          " Don't unload hidden buffers
+set nofoldenable    " Disable folding by default
+set autoread        " Autoread file changed outside of editor
+set exrc            " Load `.nvimrc` or `.exrc` from current directory
+set secure          " `:autocmd` is not allowed in `.nvimrc` and `.exrc`
 set nowrap
 
-set fileencodings=utf-8,koi8-r,cp1251,imb866
-
-set wildmenu                                    " show enhanced completion
-"set wildmode=list:longest                       " together with wildmenu
 set wildignore+=.hg,.git,.svn                   " version control
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*jpeg   " binary images
 set wildignore+=*.o,*.sw?,*.pyc
 set wildignore+=build/*                         " yocto build directory
 
-set spelllang=en_us,ru
+set spelllang=en,en_us,ru
 
 " Define group of commands.
 " Commands defined in .vimrc don't bind twice if .vimrc will reload
